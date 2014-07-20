@@ -15,10 +15,11 @@
 #define BOUND_8U(t) ((t) < 0 ? 0 : (t) > 255 ? 255 : (t))
 
 static void dt_row(const double *f, int n, double *d, double *z, int *v) {
+        int k, q;
+
         v[0] = 0;
         z[0] = -INF; 
         z[1] = +INF;
-        int k, q;
         
         k = 0;
         for (q = 1; q < n; ++q) {
@@ -125,7 +126,7 @@ void
 dt_gray(unsigned char *gray, int rows, int cols, int step) {
         double *m = malloc(sizeof(m[0]) * rows * cols);
         int i, j;
-        double vstep = 1000.0;
+        const double vstep = 100.0; /* big enough to transform the distance... */
         for (i = 0; i < rows; ++i) {
                 for (j = 0; j < cols; ++j) {
                         m[i*cols + j] = vstep * (double)gray[i*step + j];

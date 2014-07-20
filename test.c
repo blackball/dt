@@ -13,7 +13,7 @@ test_binary(const char *iname) {
         
         binary = cvCreateImage(cvGetSize(gray), 8, 1);
         
-        cvThreshold(gray, binary, 100, 255, CV_THRESH_BINARY);
+        cvThreshold(gray, binary, 50, 255, CV_THRESH_BINARY);
 
         dt_binary((unsigned char*)binary->imageData, binary->height, binary->width, binary->widthStep);
         
@@ -29,7 +29,7 @@ test_binary(const char *iname) {
 static void 
 test_gray(const char *iname) {
         IplImage *gray = cvLoadImage(iname, 0);
-                
+        
         if (!gray) {
                 return ;
         }
@@ -50,10 +50,10 @@ main(int argc, char **argv) {
                 return 0;
         }
 
-        if (strcmp(argv[2], "b")) {
+        if (strcmp(argv[2], "b") == 0) {
                 test_binary(argv[1]);
         }
-        else if (strcmp(argv[2], "g")) {
+        else if (strcmp(argv[2], "g") == 0) {
                 test_gray(argv[1]);
         }
         

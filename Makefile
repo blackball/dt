@@ -1,10 +1,7 @@
-all: test split
+all: test
 
 test:
-	clang dt.c test.c -o test -lopencv_core -lopencv_highgui -lopencv_imgproc -lm
-
-split:
-	clang++ split.cc -o split -lopencv_core -lopencv_highgui -lopencv_imgproc
+	clang -g -O3 dt.c test.c -o test -lopencv_core -lopencv_highgui -lopencv_imgproc -lm
 
 clean:
-	rm test split
+	rm test
